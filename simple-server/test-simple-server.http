@@ -1,0 +1,5 @@
+# Install the VS Code "REST Client" to make the most of this file:
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+GET http://localhost:3000
+###
+POST http://localhost:3000
