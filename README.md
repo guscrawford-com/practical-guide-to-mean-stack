@@ -1,4 +1,4 @@
-# practical-guide-to-mean-stack
+# The Practical Guide to MEAN Stack Development
 
 A living set of teaching sessions ramping broadly experienced developers up-to working speed with MEAN stack software.
 
