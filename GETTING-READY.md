@@ -4,13 +4,13 @@ Being a *MEAN*-stack developer means being knowledgable in areas of **MongoDB**,
 
 Because MEAN-stackers co-exist in likely one of the most cross-platform ecosystems; the range of tools and options you have for acocmplishing your tasks greatly vary.  This guide is aimed to share some opinions and guid you through setting up a MEAN developer's environment on **Windows**, using **Command-Prompt** as the favorite *ternimal-interface*; but the same guide could be broadly followed for someone using *bash* on a Mac or Linux.
 
-[Install Dev-tools](#Install%20Dev-tools) | [Install the Stack](Install%20the%20Stack) | 
+[Install Dev-tools](#Install-Dev-tools) | [Install the Stack](Install-the-Stack) | 
 
 ----
 
 ## Install Dev-tools
 
-[Install VSCode](#Install%20VSCode) | [Install Git](#Install%20Git)
+[Install VSCode](#Install-VSCode) | [Install Git](#Install-Git)
 
 ### Install Git
 
@@ -40,13 +40,13 @@ A couple of other worthy alternatives:
 
 ## Install the Stack
 
-[Install NVM & Node.js](#Install%20NVM%20%26%20Node.js) | [Install Key Global Node.js Packages](#Install%20Key%20Global%20Node.js%20Packages)
+[Install NVM & Node.js](#Install-NVM--Node.js) | [Install Key Global Node.js Packages](#Install-Key-Global-Node.js-Packages)
 
 ### Install NVM & Node.js
 
 As the complexity of problems and solutions you provide builds overtime; you'll likely need to manage Node.js version transitions or be able to test a Node.js application running on a specific version of Node.js.
 
-It's recommended to install NVM first *and use it to [install Node.js](Install%20Node.js%20with%20NVM)*, but you can skip that and [install Node.js directly](Install%20Node.js) if you wish.
+It's recommended to install NVM first *and use it to [install Node.js](Install-Node.js-with-NVM)*, but you can skip that and [install Node.js directly](Install-Node.js) if you wish.
 
 #### Install NVM
 
