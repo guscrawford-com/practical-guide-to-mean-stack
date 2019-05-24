@@ -4,7 +4,7 @@
 
 ## 2. This is a REST API
 
-In the first session's ["Node.js as a Server"](./node-fundamentals/README.md#Nodejs-as-a-Server) module; we explored how we can handle HTTP requests with node with the out-of-the-box libraries that ship with the Node.js platform, namely `http`.
+In the first session's ["Node.js as a Server"](../node-fundamentals/README.md#Nodejs-as-a-Server) module; we explored how we can handle HTTP requests with node with the out-of-the-box libraries that ship with the Node.js platform, namely `http`.
 
 ### RESTfully Handle Data
 
