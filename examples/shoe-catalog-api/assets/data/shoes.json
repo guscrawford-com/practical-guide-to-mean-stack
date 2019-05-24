@@ -1,0 +1,30 @@
+[
+    {
+        "year":"2008",
+        "make":"Nike",
+        "model":"Air Jordan",
+        "trim":"CDP \"Bred\" XI",
+        "image":"2008-air_jordan-cdp_bred_XI.jpg"
+    },
+    {
+        "year":"2018",
+        "make":"Nike",
+        "model":"Air Jordan",
+        "trim":"11 Retro Concord",
+        "image":"2018-air_jordan-11_retro_concord.jpg"
+    },
+    {
+        "year":"2018",
+        "make":"Nike",
+        "model":"Air Jordan",
+        "trim":"11 Retro Platinum",
+        "image":"2018-air_jordan-11_retro_platinum.jpg"
+    },
+    {
+        "year":"2019",
+        "make":"Nike",
+        "model":"Air Jordan",
+        "trim":"1 Spider-Man (Retro)",
+        "image":"2019-air_jordan-1_retro_spiderman.jpg"
+    }
+]

@@ -1,0 +1,34 @@
+# Install the VS Code "REST Client" to make the most of this file:
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+### shoe-catalog-api
+@testEndpoint = http://localhost:3000
+
+### Root
+GET {{testEndpoint}}
+### 
+GET {{testEndpoint}}/not-there
+
+### Shoes
+### List all shoes
+GET {{testEndpoint}}/shoes
+### Get the shoe with sku: 0
+GET {{testEndpoint}}/shoes/0
+### List all shoes with "retro" in the trim property
+@trim = retro
+GET {{testEndpoint}}/shoes?trim={{trim}}
+### Save a new shoe
+POST {{testEndpoint}}/shoes
+Content-Type: application/json;
+
+{
+    "year":"2019",
+    "make":"Adidas",
+    "model":"Predator",
+    "trim":"King XL"
+}
+
+### 201x inventory
+GET {{testEndpoint}}/inventory
+### 201x inventory
+GET {{testEndpoint}}/inventory?shoe.year=201
