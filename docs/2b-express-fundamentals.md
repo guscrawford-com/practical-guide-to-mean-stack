@@ -142,7 +142,3 @@ You may also have noticed you installed a package giving you a new command, **no
    5. We don't want to have to rely on the end-developer to have installed **nodemon** globally for our task to work
 
 We covered off a third package installation context (the "dev" dependency) and learned to write **npm** tasks all in one shot!
-
-#### Disecting the Express Application
-
-Let's disect the express app and further
