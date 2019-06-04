@@ -143,6 +143,46 @@ You may also have noticed you installed a package giving you a new command, **no
 
 We covered off a third package installation context (the "dev" dependency) and learned to write **npm** tasks all in one shot!
 
-#### Disecting the Express Application
+### Disecting the Express Application
 
-Let's disect the express app and further
+We've already got a pretty solid REST api in **shoe-catalog-api** right?  So what does *express* add for us?  Well, simply put a lot:
+
+* A "route-matching" pattern we can use to map our handlers to specific URI requests
+* An MVC framework for further piping our request handlers to templated HTML output
+* Clean short-hand access to HTTP requests and transformations:
+  * Reading / writing headers
+  * Writing consistent response bodies and content-types
+
+The illustration example is designed to make you *think* about the kinds of things that *express* is doing under the hood&mdash;we get some points for creating a clean workspace allowing us to add route-handlers and process requests; we'd actually start off with quite a bit of technical debt though if we went to production with that example for a few reasons:
+
+1. The request handling is not super-flexible; it's designed to map a URI path to a relatively placed file matched on name
+2. There is only the most fundamental groundwork supporting URI and body-parsing
+   1. There is mature; battle-tested code that handles all of this for us.
+   2. We only wrote *middleware* that parses JSON formated request-bodies
+3. It's too much code!
+
+Let's disect the generated express app and further look at where some of the components illustrated **in shoe-catalog-api** will fit in; and how much we get out of the box with express.
+
+#### Contrasting From 1000 Feet
+
+Very broadly; our project structures aren't too different:
+
+1. The original illlustration API had a folder called "assets" that could just as easily be named "public"
+2. Both projects have a folder for "routes"
+3. We've not written *services* in our express-generated app; but if we were to do so they'd certainly belong in a namesake folder
+
+#### Entry Points
+
+*Just to review, the **entry point** for a Node application is always `index.js` or specified by the `main` property in the root **package.json***
+
+The simple **shoe-catalog-api** entry point is *index.js* and you'll notice some code written in our previous examples that sets the ports we want to use and starts listening for requests; we've now added code that:
+
+* `mapHandler` *maps request handlers to requests*
+* `parseUri` *parses the request URL coming in for a query-string and builds a JSON object from it*
+* `parseBody` *parses the JSON format request body on a PUT/POST/PATCH method request and turns it into a JSON object*
+
+As mentioned before; all that great stuff we added in our simple example entry point, is provided out of the box by express!  Let's look at the new entry point, *bin/www*:
+
+1. The first real line in that file *requires* **app.js** in the root of the project
+   1. For all intents-and-purposes; this is the *practical* entry point of your express application
+   2. 
