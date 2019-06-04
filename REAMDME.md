@@ -1,3 +1,3 @@
 # Practical Guide to MEAN Stack
 
-* [Getting Ready](docs/GETTING-READY.md)
+* [Getting Ready](docs/0-getting-ready.md)
