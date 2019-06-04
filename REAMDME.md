@@ -1,5 +1,5 @@
 # Practical Guide to MEAN Stack
 
-* [Getting Ready](docs/node-fundamentals/GETTING-READY.md)
-* [Fundamentals of Node.js](docs/node-fundamentals/README.md)
-* [Node.js as a Backend](docs/node-fundatmentals/NODE-SERVER.md)
+* [Getting Ready](docs/0-getting-ready.md)
+* [Fundamentals of Node.js](docs/1-node-fundamentals.md)
+* [Node.js as a Backend](docs/2-node-as-a-backend.md)
