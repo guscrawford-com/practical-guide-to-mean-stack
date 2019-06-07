@@ -7,13 +7,13 @@ module.exports = async function (request, response) {
                     sku:request.paths[2]
                 }));
             return shoeService.findAny(request.query);
-        case 'post': case 'put': case 'patch':
-            return shoeService.upsert(request.body, request.query);
-        case 'delete':
-                return shoeService.remove(request.query);
-        default:
-            let notFound = new Error('Not found');
-            notFound.statusCode = 404;
-            throw notFound;
+        // case 'post': case 'put': case 'patch':
+        //     return shoeService.upsert(request.body, request.query);
+        // case 'delete':
+        //         return shoeService.remove(request.query);
+        // default:
+        //     let notFound = new Error('Not found');
+        //     notFound.statusCode = 404;
+        //     throw notFound;
     }
 }

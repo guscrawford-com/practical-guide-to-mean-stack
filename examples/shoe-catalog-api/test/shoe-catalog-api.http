@@ -18,7 +18,7 @@ GET {{testEndpoint}}/shoes/0
 @trim = retro
 GET {{testEndpoint}}/shoes?trim={{trim}}
 ### Save a new shoe
-POST {{testEndpoint}}/shoes
+GET {{testEndpoint}}/shoes/sell
 Content-Type: application/json;
 
 {

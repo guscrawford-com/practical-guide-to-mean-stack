@@ -2,5 +2,8 @@
   "name": "simple-server",
   "version": "1.0.0",
   "description": "A simple http request handler",
-  "main": "simple-server.js"
+  "main": "simple-server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
