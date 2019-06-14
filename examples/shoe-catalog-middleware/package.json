@@ -1,0 +1,9 @@
+{
+  "name": "shoe-catalog-middleware",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "peerDependencies": {
+    "express": "4.*"
+  }
+}
