@@ -18,8 +18,18 @@ GET {{testEndpoint}}/shoes/0
 @trim = retro
 GET {{testEndpoint}}/shoes?trim={{trim}}
 ### Save a new shoe
-GET {{testEndpoint}}/shoes/sell
-Content-Type: application/json;
+POST {{testEndpoint}}/shoes HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+User-Agent: PostmanRuntime/7.13.0
+Accept: */*
+Cache-Control: no-cache
+Postman-Token: b7912595-d650-45d9-b993-6fc801ce27bd,0d1c1805-684f-4339-bab1-d41e30e717ab
+Host: localhost:3000
+accept-encoding: gzip, deflate
+content-length: 93
+Connection: keep-alive
+cache-control: no-cache
 
 {
     "year":"2019",
