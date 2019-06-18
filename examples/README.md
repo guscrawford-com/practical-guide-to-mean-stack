@@ -12,7 +12,6 @@ Expands on [my-script.js](#my-script-js) and illustrates `require` and `export`.
 
 This example project comprises a microservice allowing access to a shoe catalog / inventory.
 
-* 📄 index.js *an elaboration on `simple-server.js` extended to allow us to handle "routes", URL paths and query-strings in the `routes` folder*
 * 📂 assets
   * 📂 data *contains a .json file we load as a set of shoes that exist in the world (our domain model)*
   * 📂 images *contains images of shoes in the .json*
@@ -25,6 +24,8 @@ This example project comprises a microservice allowing access to a shoe catalog 
   * 📄 shoes-service.js *provides **shoe** related data and value*
 * 📂 test *contains files for testing our API*
   * 📄 shoe-catalog-api.http *a script setup with details you need to test your API calls with the [VS Code Rest-Client Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)*
+* 📄 index.js *an elaboration on `simple-server.js` extended to allow us to handle "routes", URL paths and query-strings in the `routes` folder* (application root)
+* 📄 package.json *redundantly defines the root of this application; this project has no dependencies; start this project by running `node ./` from the root of the project*
 
 
 ----
