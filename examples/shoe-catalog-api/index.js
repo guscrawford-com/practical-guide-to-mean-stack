@@ -1,4 +1,4 @@
-const PORT = 3000;
+const PORT = 3100; // 3000 is the "default" experss development port; we want to be able to run both without colliding
 const Http = require('http');
 const { join } = require('path');
 const server = Http.createServer(requestHandler);
