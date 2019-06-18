@@ -18,5 +18,25 @@ class ShoeService extends GenericRepoService {
             )
         );
     }
+
+    async upsert(item, filter) {
+        let reqFields = {
+            year:null,
+            make:null,
+            model:null,
+            trim:null,
+            ... item
+        };
+        if (!(
+            reqFields.year &&
+            reqFields.make &&
+            reqFields.model &&
+            reqFields.trim
+        )) throw new Error(`missing fields: ${Object.keys(reqFields).filter(f=>!reqFields[f]).join(', ')}`);
+        if (!item.sku) {
+            item.sku = this.data.length.toString();
+        }
+        return super.upsert(item, filter);
+    }
 }
 module.exports = ShoeService;

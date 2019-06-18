@@ -76,8 +76,8 @@ The magic is in the `-g` switch we provided to **npm**, it knows to make any bin
 In the case of the [express-generator](https://expressjs.com/en/starter/generator.html), this is a Node.js package we can run anywhere to generate a new project workspace with a fully started express application.  Let's put it to use and re-create the **shoe-catalog-api** example in express.
 
 1. Choose a folder to create your new workspace in, open a terminal from this directory
-2. `express shoe-catalog` *generates a new workspace with a complete ready-to-start express application*
-3. `cd shoe-catalog` *move your terminal's present-working-directory to the workspace; feel free to examine the generated **package.json***
+2. `express  shoe-catalog-express` *generates a new workspace with a complete ready-to-start express application*
+3. `cd  shoe-catalog-express` *move your terminal's present-working-directory to the workspace; feel free to examine the generated **package.json***
 4. `npm install` (or just `npm i`) *this installed **express** library amongst others in your project*
 5. `npm start` *this starts your new application*
    1. `[ctrl]+c` *exit your application*
@@ -94,7 +94,7 @@ We've already covered the most fundamental way to *start* a node application; by
 
 ```
 {
-  "name": "shoe-catalog",
+  "name": " shoe-catalog-express",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -171,7 +171,7 @@ Very broadly; our project structures aren't too different:
 2. Both projects have a folder for "routes"
 3. We've not written *services* in our express-generated app; but if we were to do so they'd certainly belong in a namesake folder
 
-#### Entry Points
+#### Tracing from the Entry Point
 
 *Just to review, the **entry point** for a Node application is always `index.js` or specified by the `main` property in the root **package.json***
 
@@ -181,8 +181,185 @@ The simple **shoe-catalog-api** entry point is *index.js* and you'll notice some
 * `parseUri` *parses the request URL coming in for a query-string and builds a JSON object from it*
 * `parseBody` *parses the JSON format request body on a PUT/POST/PATCH method request and turns it into a JSON object*
 
-As mentioned before; all that great stuff we added in our simple example entry point, is provided out of the box by express!  Let's look at the new entry point, *bin/www*:
+As mentioned before; all that great stuff we added in our simple example entry point, is provided out of the box by express!  Let's look at the new entry point, *bin/www (edited for brevity)*:
 
-1. The first real line in that file *requires* **app.js** in the root of the project
-   1. For all intents-and-purposes; this is the *practical* entry point of your express application
-   2. 
+```
+#!/usr/bin/env node
+/*
+The above "shebang" line is special; it will not get executed as JavaScript; it will be interpreted by unixy systems as a directive as:
+"this is a system script; process it with node, look for node in /usr/bin/env"
+*/
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app'); // Get an express application instance
+var http = require('http'); // Should be familiar from the 'simple-server' example
+
+/**
+ * Get port from environment and store in Express.
+ */
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+// Should be familiar from the 'simple-server' example; the express application instance is one big request handler!
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+function normalizePort(val) { /* ... make sure port is a number*/ }
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+function onError(error) { /* ... handle top-level errors in the server process as they occur */ }
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+function onListening() { /* ... write a debug log of the port we're listening on */ }
+
+```
+
+1. The first real line in that file *requires* **app.js** in the root of the project; so for all intents-and-purposes; this file *app.js* is the *practical* entry point of your express application where you'll **configure middleware** and map routes to **handlers** that process them.
+2. You should recognize the use of the internal `http` library from both simple server and our own rest API example; express rides on top that library too; and in fact an express application is no more than request handler itself.
+3. Call `createServer` just like other examples, set the server to `listen` on the bound port.
+
+### app.js
+
+As mentioned above; *app.js* `require`'d by **bin/www** is the *practical* root of your express project as you would configure **middleware** and your **route handlers** from this file.
+
+"Middleware" in the NodeJS world refers to code that runs "in the middle" somewhere between a request being acted on and a corresponding response.
+
+Really; *middlware* could describe *route handlers* too since they are in-fact nothing more than middleware that process a request and a response.  While all middleware can be configured to filter requests based on various criteria, the distinction is that a route handler will generally only perform processing on requests of a specified URI route and broadly for the purposes of mapping *routes* to *business logic* and further filtering responses (i.e. perhaps one "route" is best responded too with csv or xml data).
+
+Looking at *app.js (edited for brevity)*:
+
+```
+/** ... include middleware software (i.e. cookie-parser, morgan [refered to as "logger" below]) */
+var express = require('express'); // Use the express framework...
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var inventoryRouter = require('./routes/inventory');
+var shoesRouter = require('./routes/shoes');
+
+var app = express();  // Assign back an "application instance" (a.k.a the root request handler provided by express)
+
+/** use "jade" MVC view engine and map it's templates ... */
+
+app.use(logger('dev')); // Insert "morgan" a.k.a. the "logger" middleware; set up with a 'dev' flag in our application flow
+app.use(express.json()); // This ensures we can read and write response bodies with JSON format data
+app.use(express.urlencoded({ extended: false })); // This ensures we can read url-encoded request bodies (from forms etc.)
+app.use(cookieParser()); // This is middleware that reads cookie headers and organizes the cookies for us
+app.use(express.static(path.join(__dirname, 'public'))); // This creats a request handler that maps requests to a file in the public folder
+
+app.use('/', indexRouter); // Use the "index" router that generator created for us; this response is an text/HTML response type
+app.use('/users', usersRouter); // Pick up requests matching /users* and send them to the users router
+app.use('/shoes', shoesRouter); // Pick up requests matching /shoes* and send them to the shoes router
+app.use('/inventory', inventoryRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+/** ... further protect stack traces when returning an error on a response if in production mode for security purposes */
+
+// Export our master request handler, ./bin/www will require our express instance with all it's middleware configurations
+module.exports = app;
+
+```
+
+1. If you look at the raw file you'll see more `require`'s for things like "morgan" and "cookie-parser".  They're the best examples of middleware&mdash;they're designed to uniformly transform all requests and value-add request-logging and cookie-header reading, respectively.
+   1. You may see the middleware modules get invoked; i.e. `app.use(cookieParser())`
+      1. So `cookieParser` is the middlware-*factory*, and the output of that factory is our *middleware*
+      2. The result of the invocation is still a function of this form: `(request, response, next)=>{}`
+2. You'll also see `require`'s for our *routes*
+3. The `require`ment of express should result in the *express-factory*.  When we run the factory we'll get back the master request handler we need:
+   1. i.e. `var app = express();`
+4. You'll now notice a lot of resoloved `require`ments are now being `use`ed.
+   1. Invoking `app.use(...)` is how we "insert" middleware.
+   2. Order is important...
+      1. Notice that high-level middlware with broad applicability is inserted first:
+         1. Cookie parsing, logging, etc.
+         2. Notice it does not have a particular route filter it protects
+      2. Notice that middware resolving *anything* seems to come next; the first of which is our `app.use(express.static(path.join(__dirname, 'public')));` which maps pretty much every request to first match a file in the **public** directory.
+         1. `path.join` is a NodeJS provided library that supports with cross-platform directory resolution.
+      3. Now we start getting more specific and picking out paths on the URI to route for the purposes of our api:
+         1. users, shoes, inventory, etc.
+         2. Notice how we specify the root-prefix for these routes with a complimentary *route-matching pattern*?
+
+### routes/shoes.js
+
+In the "routes" folder is all the middleware specially separated for the purposes of mapping our API to the services that provide it's real value.
+
+The best illustration is the route provided *shoes.js*
+
+```
+const shoeService = new (require('../services/shoes-service'))(); // Reequire this so we have business-logic value to provide
+var express = require('express'); // Get access to the express factory;
+var router = express.Router(); // Use express' Router factory and produce a new request handler we can further pass requests to
+
+/**
+ * Map URI paths and verbs to request handlers
+ */
+router.get('/', async function(req, res, next) {
+    let result = await shoeService.findAny(req.query);
+    return res.json(result);
+});
+/**
+ * Use a path "parameter"
+ */
+router.get('/:sku', async function(req, res, next) {
+    let result = await shoeService.findAny({...req.query, sku:req.params.sku});
+    return res.json(result);
+});
+
+/**
+ * Map several verbs to the "general" write routine
+ */
+router.post('/', generalInsertionHandler);
+router.put('/', generalInsertionHandler);
+router.patch('/', generalInsertionHandler);
+
+async function generalInsertionHandler(req, res, next) {
+    let result;
+    try {
+        result = await shoeService.upsert(req.body, req.query);
+    }
+    catch (problem) {
+        next(problem)
+    }
+    return res.json(result);
+}
+module.exports = router;
+```
+
+1. Notice the agnostic reference to our route path; we don't know we're "shoes" and we can be re-mapped from the app.js very easily
+   1. `router.get('<path-match-pattern>', <middleware handler>)` where `<path-match-pattern>` is relative to the *prefix* argument we pass to express when we `use` this route
+2. Notice we mapped the same 'generalInsertionHandler' routine to all three HTTP verbs `PUT`, `POST`, `PATCH`.
+   1. Router provides short-hands that map handlers to requests with particular verbs:
+   2. Follows this pattern: `router['<http verb>'.toLowerCase()](<path-match-pattern>,<handler>)`
+3. Notice `router.get('/:sku', async function(req, res, next) {...`
+   1. The path parameter, **sku** in the `<path-match-pattern>`.
+      1. A path match pattern like `:sku` will result in the real value in that URI path being passed on `req.params.sku`
+         1. `router.get('/:<parameter>)` ➡ `{params:{"<paramter>":<parameter value>}}`
+4. Notice that inside `generalInsertionHandler`, we're able to read the JSON format request body from our request on `req.body`
+
+## Summing it Up
+
+Notice that what *didn't change* was our simple service layer; after getting a high-level overview of the ins-and-outs of request handling with NodeJS; we're beginning to be real *MEAN* stackers now that we have a quick and concise framework for streamlining and converging filtering logic on requests and further segmenting and delegating *where* requests go for more processing based on their request details, and more-often-than-not based on their original URI request path.

@@ -38,7 +38,7 @@ This example project **still** comprises a microservice allowing access to a sho
 
 The project has been generated with **express-generator** by using the terminal command `express shoe-catalog-express`.
 
-* 📂 assets
+* 📂 assets (cloned from [shoe-catalog-api](#shoe-catalog-api))
   * 📂 data *contains a .json file we load as a set of shoes that exist in the world (our domain model)*
   * 📂 images *contains images of shoes in the .json*
 * 📂 bin
