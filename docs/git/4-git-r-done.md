@@ -625,9 +625,9 @@ As illustrated earlier above; we can also manage the pull requests from the remo
 
 *General anatomy of a Pull Request*
 
-[!Creating a Pull Request on Git Hub](./git-hub-pr-example.png)
+![Creating a Pull Request on Git Hub](./git-hub-pr-example.png)
 
-[!Reviewing Code Changes on Git Hub](./git-hub-pr-changes.png)
+![Reviewing Code Changes on Git Hub](./git-hub-pr-changes.png)
 
 Once you're happy and ready to go into review; complete creating your pull-request:
 
@@ -635,7 +635,7 @@ Once you're happy and ready to go into review; complete creating your pull-reque
 2. During the staging; git does a dry run of the merge and verifies that the code changes being merged don't **conflict** (which will get discussed later)
 3. Once the team has approved the changes; the pull-request can be completed
 
-[All set to "Merge pull request"](!./git-hub-complete-pr.png)
+![All set to "Merge pull request"](./git-hub-complete-pr.png)
 
 ##### Locally Fetching and Pulling
 
