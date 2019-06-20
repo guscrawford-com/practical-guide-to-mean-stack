@@ -570,7 +570,7 @@ After doing that, we can create a "pull request" asking the team to review the c
 
 Typically once you've pushed your feature branch to the remote; you can create a pull-request from the remote git provider's portal as illustrated below:
 
-[Git Hub detects recently pushed changes and offers the option of a pull-request](!./git-hub-detected-code-changes.png)
+![Git Hub detects recently pushed changes and offers the option of a pull-request](./git-hub-detected-code-changes.png)
 
 *The exact process of creating a **pull-request** on a given remote git-providers like **Git Hub** is not always the same but frequently similar; because this is not an excercise in learning git-hub we'll cover creating a pull-request from the command-line; but point out that this isn't done very often in all practicality*
 
