@@ -11,7 +11,7 @@ Foremost among them all in universal adoption; is Git.
 
 ### A Brief Overview
 
-Git's development was lead by Linus Torvaldis; in turn to support developing the Linux kernal&mdash;a large project that essentially implemented *Unix* operating system with open-source code (one can imagine the large team and vast dirth of code coming from different source authors).
+Git's development was lead by Linus Torvaldis; in turn to support developing the Linux kernal&mdash;a large project that essentially implemented *Unix* operating system with open-source code (one can imagine the large team and vast dearth of code coming from different source authors).
 
 #### Problems with Centralized Version Control Systems
 
@@ -66,7 +66,7 @@ Some of the drawbacks to this model as per the [best answer on Stack Overflow co
 
 *You'll need to at minimum install the Git binary from git.*
 
-While there is a dirth of graphically-oriented tools for managing git repositories that will make your life easier; for the purposes of this session we'll focus on using the *command-line interface* to perform our git operations to build the comfortability and understanding of the underlying commands a nifty tool like *Git Kraken* or *Source Tree* ride on top of.
+While there is a broad expanse of graphically-oriented tools for managing git repositories that will make your life easier; for the purposes of this session we'll focus on using the *command-line interface* to perform our git operations to build the comfortability and understanding of the underlying commands a nifty tool like *Git Kraken* or *Source Tree* ride on top of.
 
 Refer to [Getting Ready: Install Git](../node-js/0-getting-ready.md#install-git) for installing the git binary on your system.
 
