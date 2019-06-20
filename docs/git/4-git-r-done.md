@@ -11,7 +11,7 @@ Foremost among them all in universal adoption; is Git.
 
 ### A Brief Overview
 
-Git's development was lead by Linus Torvaldis; in turn to support developing the Linux kernal&mdash;a large project that essentially implemented *Unix* operating system with open-source code (one can imagine the large team and vast dearth of code coming from different source authors).
+Git's development was lead by Linus Torvaldis; in turn to support developing the Linux kernal&mdash;a large project that essentially implemented *Unix* operating system with open-source code (one can imagine the large team and vast packets of code coming from different source authors that implement different binaries and low-level unix commands).
 
 #### Problems with Centralized Version Control Systems
 
