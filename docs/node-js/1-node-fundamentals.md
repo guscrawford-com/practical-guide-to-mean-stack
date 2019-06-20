@@ -188,4 +188,4 @@ It's worth observing that when the string literal `'./hello'` was passed to `req
 
 ----
 
-*continue on with [Node.js as a Server](./1b-node-server-fundamentals.md#Nodejs-as-a-Server)*
+*continue on with [Node.js as a Server](./1b-node-as-a-backend.md#Nodejs-as-a-Server)*
