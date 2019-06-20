@@ -625,9 +625,9 @@ As illustrated earlier above; we can also manage the pull requests from the remo
 
 *General anatomy of a Pull Request*
 
-[Creating a Pull Request on Git Hub](!./git-hub-pr-example.png)
+[!Creating a Pull Request on Git Hub](./git-hub-pr-example.png)
 
-[Reviewing Code Changes on Git Hub](!./git-hub-pr-changes.png)
+[!Reviewing Code Changes on Git Hub](./git-hub-pr-changes.png)
 
 Once you're happy and ready to go into review; complete creating your pull-request:
 
